@@ -14,7 +14,7 @@ public class customViewSaturn extends SurfaceView implements SurfaceHolder.Callb
     private SaturnRings saturnRings;
     Context cont;
 
-    private int degree = 27;
+    private int degree = 27; //actual tilt of Saturn is 26.7 degrees
     private int ringSize = 52;
     private boolean goingUp = true;
     private int outerRingWidth, innerRingWidth;
@@ -139,9 +139,12 @@ public class customViewSaturn extends SurfaceView implements SurfaceHolder.Callb
         @Override
         public void run() {
             while (isRunning) {
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 updatePosition();
-                invalidate();
-                drawViewOnSystemCall(mHolder);
             }
         }
     }
